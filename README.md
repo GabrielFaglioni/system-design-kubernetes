@@ -9,5 +9,8 @@ the file hosts
 ```
 Então, para apontar mp3converter.com e rabbitmq-manager.com para o localhost, é necessário rodar:
 ```
+minikube start
+```
+```
 minikube tunnel
 ```
