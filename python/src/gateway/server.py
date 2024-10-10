@@ -31,18 +31,20 @@ def login():
 
 @server.route("/upload", methods=["POST"])
 def upload():
+    print("validating token...")
     access, err = validate.token(request)
 
     if err:
         return err
-
+    print("checking access...")
     access = json.loads(access)
 
     if access["admin"]:
         if len(request.files) > 1 or len(request.files) < 1:
             return "exactly 1 file required", 400
-
-        for _, f in request.files.items():
+        print("Is Admin. Uploading...")
+        for i, f in request.files.items():
+            print(f'Uploading file "{i}"/"{len(request.files)}"')
             err = util.upload(f, fs_videos, channel, access)
 
             if err:
